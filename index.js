@@ -1,98 +1,26 @@
-class Student {
-    constructor(id, name, dob, className, gpa) {
-        this.id = id;
-        this.name = name;
-        this.dob = dob;
-        this.className = className;
-        this.gpa = gpa;
+const mycheckBox = document.getElementById("mycheckBox")
+const visa = document.getElementById("myRadioVS")
+const mastercard = document.getElementById("myRadioM")
+const paypal = document.getElementById("myRadioP")
+const mySubmit = document.getElementById("mySub")
+const subRs = document.getElementById("subRs")
+const payRs = document.getElementById("payRs")
+
+mySubmit.onclick = function(){
+
+    if(mycheckBox.checked){
+        subRs.textContent = `You are subcribed!`;
     }
-}
-
-function submitNumStudents() {
-    var numStudents = document.getElementById("numStudents").value;
-    var studentFields = document.getElementById("studentFields");
-    var studentContainer = document.getElementById("studentContainer");
-
-    studentContainer.innerHTML = '';
-
-    for (var i = 1; i <= numStudents; i++) {
-        var studentDiv = document.createElement("div");
-
-        var studentIdLabel = document.createElement("label");
-        studentIdLabel.textContent = "Mã SV " + i + ": ";
-        var studentIdInput = document.createElement("input");
-        studentIdInput.type = "text";
-        studentIdInput.name = "studentId" + i;
-
-        var fullNameLabel = document.createElement("label");
-        fullNameLabel.textContent = "Họ và tên " + i + ": ";
-        var fullNameInput = document.createElement("input");
-        fullNameInput.type = "text";
-        fullNameInput.name = "fullName" + i;
-
-        var dobLabel = document.createElement("label");
-        dobLabel.textContent = "Ngày tháng năm sinh " + i + ": ";
-        var dobInput = document.createElement("input");
-        dobInput.type = "date";
-        dobInput.name = "dob" + i;
-
-        var classLabel = document.createElement("label");
-        classLabel.textContent = "Lớp học " + i + ": ";
-        var classInput = document.createElement("input");
-        classInput.type = "text";
-        classInput.name = "class" + i;
-
-        var gpaLabel = document.createElement("label");
-        gpaLabel.textContent = "Điểm GPA " + i + ": ";
-        var gpaInput = document.createElement("input");
-        gpaInput.type = "number";
-        gpaInput.step = "0.01";
-        gpaInput.min = "0";
-        gpaInput.max = "4";
-        gpaInput.name = "gpa" + i;
-
-        studentDiv.appendChild(studentIdLabel);
-        studentDiv.appendChild(studentIdInput);
-        studentDiv.appendChild(fullNameLabel);
-        studentDiv.appendChild(fullNameInput);
-        studentDiv.appendChild(dobLabel);
-        studentDiv.appendChild(dobInput);
-        studentDiv.appendChild(classLabel);
-        studentDiv.appendChild(classInput);
-        studentDiv.appendChild(gpaLabel);
-        studentDiv.appendChild(gpaInput);
-
-        studentContainer.appendChild(studentDiv);
+    else{
+        subRs.textContent = `You are not subcribed!`;
     }
-    studentFields.style.display = "block";
-}
-
-function submitStudents() {
-    var numStudents = document.getElementById("numStudents").value;
-    var students = [];
-
-    for (var i = 1; i <= numStudents; i++) {
-        var id = document.getElementsByName("studentId" + i)[0].value;
-        var name = document.getElementsByName("fullName" + i)[0].value;
-        var dob = document.getElementsByName("dob" + i)[0].value;
-        var className = document.getElementsByName("class" + i)[0].value;
-        var gpa = document.getElementsByName("gpa" + i)[0].value;
-
-        var student = new Student(id, name, dob, className, gpa);
-        students.push(student);
+    if(visa.checked){
+        payRs.textContent = `Visa`
     }
-
-    var displayArea = document.getElementById("studentInfoDisplay");
-    displayArea.innerHTML = ""; 
-
-    for (var j = 0; j < students.length; j++) {
-        var studentInfo = document.createElement("p");
-        studentInfo.textContent = "Student " + (j + 1) + ": " +
-            "ID: " + students[j].id + ", " +
-            "Name: " + students[j].name + ", " +
-            "DOB: " + students[j].dob + ", " +
-            "Class: " + students[j].className + ", " +
-            "GPA: " + students[j].gpa;
-        displayArea.appendChild(studentInfo);
+    if(mastercard.checked){
+        payRs.textContent = `Mastercard`
+    }
+    if(paypal.checked){
+        payRs.textContent = `Paypal`
     }
 }
